@@ -460,12 +460,14 @@ class DataRegenerator {
 	   $collate = $wpdb->has_cap( 'collation' ) ? $wpdb->get_charset_collate() : '';
 
 	   return "CREATE TABLE {$this->lookup_table_name} (
+ id bigint(20) unsigned NOT NULL auto_increment, 
  product_id bigint(20) NOT NULL,
  product_or_parent_id bigint(20) NOT NULL,
  taxonomy varchar(32) NOT NULL,
  term_id bigint(20) NOT NULL,
  is_variation_attribute tinyint(1) NOT NULL,
  in_stock tinyint(1) NOT NULL,
+ PRIMARY KEY (id),
  INDEX product_or_parent_id_term_id (product_or_parent_id, term_id),
  INDEX is_variation_attribute_term_id (is_variation_attribute, term_id)
 ) $collate;";
